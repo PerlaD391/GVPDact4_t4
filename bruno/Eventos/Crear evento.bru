@@ -30,6 +30,6 @@ body:json {
   "url": "https://www.ticketmaster.com.mx"
 }
 
-vars:post-response {
-  eventoId: $res.body.id
+script:post-response {
+  bru.setVar("eventoId", res.body.id);
 }

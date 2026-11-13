@@ -85,31 +85,31 @@ las demás peticiones lo usan como `Authorization: Bearer {{token}}`.
 
 ### Registro (201)
 
-![Registro en Bruno](docs/registro.png)
+![Registro en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215713.png)
 
 ### Login (200)
 
-![Login en Bruno](docs/login.png)
+![Login en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215723.png)
 
 ### Listar eventos con token (200)
 
-![Listado de eventos en Bruno](docs/listar-eventos.png)
+![Listado de eventos en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215702.png)
 
 ### Crear evento con token (201)
 
-![Crear evento en Bruno](docs/crear-evento.png)
+![Crear evento en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215815.png)
 
 ### Actualizar evento con token (200)
 
-![Actualizar evento en Bruno](docs/actualizar-evento.png)
+![Actualizar evento en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215850.png)
 
 ### Eliminar evento con token (204)
 
-![Eliminar evento en Bruno](docs/eliminar-evento.png)
+![Eliminar evento en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215927.png)
 
 ### Sin token (401)
 
-![Petición sin token en Bruno](docs/sin-token.png)
+![Petición sin token en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20220007.png)
 
 ## Cómo correrlo en local
 
@@ -169,34 +169,3 @@ Ese último `curl` debe dar **401** (sin token), lo que confirma que el
 servidor está arriba y que el endpoint está protegido. Con token, el
 mismo endpoint da 200.
 
-## Respuestas al cuestionario (a–c)
-
-a) Un **JWT (JSON Web Token)** es un token firmado que prueba la identidad
-de quien lo presenta, sin guardar sesión en el servidor. Tiene tres partes
-en Base64URL separadas por puntos: **encabezado** (tipo de token y algoritmo
-de firma, aquí HS256), **payload** (los *claims*: normalmente `sub`, el
-identificador del usuario —aquí su correo—, `iat`, cuándo se emitió, y
-`exp`, cuándo vence; se pueden agregar más, como el rol) y **firma**, que
-se calcula con el secreto del servidor. El servidor verifica la firma con
-su secreto: si coincide y el token no venció, confía en el payload.
-
-b) Spring Security protege los endpoints con una **cadena de filtros** que
-revisa cada petición antes de llegar al controlador. En este proyecto la
-configuración es *stateless* (sin sesión) y solo permite sin autenticar
-`/api/auth/**`; todo lo demás exige autenticación. El filtro `JwtAuthFilter`
-lee el encabezado `Authorization: Bearer <token>`, valida la firma y la
-vigencia con `JwtService`, y si es válido coloca la autenticación en el
-`SecurityContext`. Si se llama un endpoint protegido **sin token** (o con
-uno inválido o vencido), el filtro no autentica y el *entry point*
-responde **401 Unauthorized**, sin llegar al controlador.
-
-c) Usé un **DTO** en vez de exponer la entidad directamente porque el DTO
-controla exactamente qué datos entran y salen de la API: la respuesta
-nunca incluye la contraseña del usuario (además de `@JsonIgnore`), el
-cliente no puede fijar campos internos como el `id` o el `rol` al
-registrarse, y las validaciones (`@Valid`, `@NotBlank`, `@Email`) viven
-en el DTO. Así la API no queda acoplada a la estructura de la base de
-datos: si la entidad cambia, el contrato de la API no tiene por qué cambiar.
-
-d) Repositorio: https://github.com/PerlaD391/GVPDact4_t4 — API en vivo:
-http://13.140.226.55:8085

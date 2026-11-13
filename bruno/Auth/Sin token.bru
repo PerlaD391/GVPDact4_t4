@@ -1,0 +1,17 @@
+meta {
+  name: Sin token (debe dar 401)
+  type: http
+  seq: 11
+}
+
+get {
+  url: {{baseUrl}}/api/eventos
+  body: none
+  auth: none
+}
+
+tests {
+  test("Sin token devuelve 401", function () {
+    expect(res.status).to.equal(401);
+  });
+}

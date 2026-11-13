@@ -1,0 +1,20 @@
+meta {
+  name: Crear categoria
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/categorias
+  body: json
+  auth: bearer
+}
+
+auth:bearer {
+  token: {{token}}
+}
+
+body:json {
+  "nombre": "Festivales",
+  "descripcion": "Festivales culturales de varios días."
+}

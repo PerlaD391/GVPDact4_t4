@@ -81,6 +81,36 @@ La colección está en `/bruno` (entornos Local y VPS). El orden es:
 En Bruno, primero corre Registro o Login para que `{{token}}` tenga valor;
 las demás peticiones lo usan como `Authorization: Bearer {{token}}`.
 
+## Capturas de pantalla
+
+### Registro (201)
+
+![Registro en Bruno](docs/registro.png)
+
+### Login (200)
+
+![Login en Bruno](docs/login.png)
+
+### Listar eventos con token (200)
+
+![Listado de eventos en Bruno](docs/listar-eventos.png)
+
+### Crear evento con token (201)
+
+![Crear evento en Bruno](docs/crear-evento.png)
+
+### Actualizar evento con token (200)
+
+![Actualizar evento en Bruno](docs/actualizar-evento.png)
+
+### Eliminar evento con token (204)
+
+![Eliminar evento en Bruno](docs/eliminar-evento.png)
+
+### Sin token (401)
+
+![Petición sin token en Bruno](docs/sin-token.png)
+
 ## Cómo correrlo en local
 
 Requisitos: Java 17 y MySQL corriendo (o usar el perfil `test` con H2 en

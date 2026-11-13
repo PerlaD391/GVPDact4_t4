@@ -95,6 +95,10 @@ las demás peticiones lo usan como `Authorization: Bearer {{token}}`.
 
 ![Listado de eventos en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215702.png)
 
+### Ver evento con token (200)
+
+![Detalle de evento en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215746.png)
+
 ### Crear evento con token (201)
 
 ![Crear evento en Bruno](docs/Captura%20de%20pantalla%202026-11-12%20215815.png)
